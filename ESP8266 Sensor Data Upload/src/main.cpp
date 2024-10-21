@@ -12,8 +12,8 @@
 #include "ESP8266_SendData.cpp"
 
 // Define Wi-Fi credentials
-const char* ssid = "CampbellHome";
-const char* password = "Tommy2Tone";
+const char* ssid = "CRCiPhone";
+const char* password = "kgtwc8qlttkr";
 
 
 

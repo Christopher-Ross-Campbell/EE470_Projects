@@ -8,4 +8,4 @@
 void connectToWiFi(const char* ssid, const char* password);
 
 
-#endif // ESP8266_INTERNET_H
+#endif 

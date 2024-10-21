@@ -10,10 +10,10 @@ void sendData(float temperature, float humidity, String dateTime) {
         HTTPClient http;
         String serverPath = "https://crcampbell.net/PHPCRUD/db_insert.php"; 
 
-        // Construct the URL with the parameters
+        // Construct the URL 
         String POST_URL = serverPath + "?node_name=node-1" + "&time_received=" + dateTime + "&temperature=" + String(temperature) + "&humidity=" + String(humidity);
 
-        // Initialize the HTTP client
+        // Initialize HTTP
         http.begin(client, POST_URL);  
         http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -28,7 +28,7 @@ void sendData(float temperature, float humidity, String dateTime) {
             Serial.println(httpResponseCode);
         }
 
-        // Free resources
+        // Close connection
         http.end();
     } else {
         Serial.println("WiFi Disconnected");

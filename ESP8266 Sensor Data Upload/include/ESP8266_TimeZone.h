@@ -1,5 +1,5 @@
-#ifndef OPTIONS_H
-#define OPTIONS_H
+#ifndef ESP8266_TIMEZONE_H
+#define ESP8266_TIMEZONE_H
 
 #include <Arduino.h>
 
@@ -9,4 +9,4 @@ extern String url;
 // Function to prompt the user and get the input
 void getUserChoice();
 
-#endif // OPTIONS_H
+#endif 

@@ -1,5 +1,5 @@
-#ifndef SENSOR_H
-#define SENSOR_H
+#ifndef ESP8266_SENSOR_H
+#define ESP8266_SENSOR_H
 
 #include <DHT.h>
 #include <Adafruit_Sensor.h>
@@ -13,4 +13,4 @@ private:
     DHT dht;
 };
 
-#endif // SENSOR_H
+#endif 

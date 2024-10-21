@@ -13,5 +13,10 @@ void connectToWiFi(const char* ssid, const char* password) {
     Serial.println("\n\rConnected to Wi-Fi!");
     Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
+    String macAddress = WiFi.macAddress();
+
+    // Print the MAC address to the serial monitor
+    Serial.print("ESP8266 MAC Address: ");
+    Serial.println(macAddress);
 }
 

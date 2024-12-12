@@ -67,7 +67,7 @@
 
         // Fetch data exery sec. w/ PHP
         setInterval(() => {
-            fetch('https://crcampbell.net/fetch_pot_values.php') // Replace with your actual URL
+            fetch('https://crcampbell.net/fetch_pot_values.php') // URL to utilize PHP script
                 .then(response => response.json())
                 .then(data => {
                     // Update chart data

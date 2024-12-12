@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potentiometer Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .chart-container {
+            width: 30%; /* Reduce the chart to 30% of the screen width */
+            aspect-ratio: 1 / 1; /* Maintain a square aspect ratio */
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="potentiometerChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('potentiometerChart').getContext('2d');
+        const potentiometerChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [], // X-axis labels (timestamps)
+                datasets: [{
+                    label: 'Potentiometer Value (Voltage)',
+                    data: [], // Y-axis data (values)
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Allow the container to control aspect ratio
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Voltage (V)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Fetch data exery sec. w/ PHP
+        setInterval(() => {
+            fetch('https://crcampbell.net/fetch_pot_values.php') // Replace with your actual URL
+                .then(response => response.json())
+                .then(data => {
+                    // Update chart data
+                    potentiometerChart.data.labels = data.map(entry => entry.timestamp);
+                    potentiometerChart.data.datasets[0].data = data.map(entry => entry.POT_value);
+                    potentiometerChart.update();
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }, 1000); // Refresh every second
+    </script>
+</body>
+</html>
